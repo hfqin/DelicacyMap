@@ -1,0 +1,140 @@
+.comment-wrapper{
+    float: left;
+    height: auto;
+    overflow: hidden;
+    min-width: 800px;
+    background: #ffffff;
+}
+.comment-icon {
+    margin-bottom: 10px;
+    height: 22px;
+    vertical-align:middle;
+}
+.comment-icon-text {
+    float: left;
+    height: 22px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei UI";
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+    color:#676767;
+}
+.comment-icon-icon{
+    float: left;
+    background: #3199e8;
+    width: 23px;
+    height: 22px;
+    margin-right: 5px;
+}
+.comment-item{
+    float: left;
+    padding-bottom:500px;
+    margin-bottom:-500px;
+    width: 100%;
+}
+.comment-item-head{
+    margin-top: 20px;
+    float: left;
+}
+.comment-item-username{
+    margin-top: 20px;
+    float: left;
+    height: 22px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei UI";
+    line-height: 22px;
+    color:#676767;
+}
+.comment-item-content{
+    margin-top: 5px;
+    float: left;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI";
+    line-height: 20px;
+    color:#676767;
+    min-height: 200px;
+    padding-bottom:160px;
+    margin-bottom:-160px;
+}
+.comment-item-time{
+    margin-top: 5px;
+    float: left;
+    height: 22px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI";
+    line-height: 22px;
+    text-align: right;
+    color:#676767;
+
+}
+.comment-item-more{
+    float: left;
+    width: 75%;
+    height: 22px;
+    font-size: 14px;
+    font-family: "Microsoft YaHei UI";
+    line-height: 22px;
+    text-align: right;
+    color:#00b0e8;
+}
+
+.comment-item-split {
+    float: left;
+    height: 1px;
+    border-bottom: solid 1px;
+    border-color: #d8d8d8;
+}
+.comment-inputer {
+    clear: both;
+    width: 100%;
+    padding-top: 20px;
+    margin-bottom: 15px;
+    height: 120px;
+}
+.comment-inputer > textarea {
+    resize:none;
+    font-family: "Microsoft YaHei UI";
+    width: 100%;
+    height: 120px;
+    background: #ffffff;
+    line-height: 30px;
+    font-size: 18px;
+    color:#111111;
+}
+.comment-submit{
+    background: #55b1e8;
+    margin-left: 510px;
+    margin-top: 40px;
+    font-size: 16px;
+    width: 120px;
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei UI";
+    color: #fefefe;
+    cursor: pointer;
+    margin-bottom: 50px;
+}
+.comment-submit:hover{
+    background: #46a4e8;
+    color: #ffffff;
+}
+.comment-get-more{
+    background: #e4e4e4;
+    float: left;
+    width:450px;
+    line-height: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    font-family: "Microsoft YaHei UI";
+    font-weight: 500;
+    margin-top: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+.comment-get-more:hover{
+    font-weight: 600;
+}

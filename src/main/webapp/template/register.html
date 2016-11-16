@@ -1,0 +1,53 @@
+<div class="container font-yahei profile-panel-lg">
+    <input id="register-upload-file-hidden" name="registerUploadFile"  onchange="register_preview_head()" type="file" style="visibility: hidden">
+
+    <img class="img-responsive col-md-4 register-head-img" id="register-avatar-img" ng-src="img/default_head.png" onclick="register_uploadImg()">
+
+
+    <div class="col-md-7 col-md-offset-1">
+        <div class="profile-title">注册</div>
+        <form name="registerProfileForm" novalidate>
+            <div class="row profile-row">
+                <div class="profile-title-sub col-md-2">用户名:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="registerProfileUsername" ng-model="registerProfileUsername" ng-minlength="1" ng-maxlength="10" type="text"
+                           placeholder="请输入1-10位字符" required>
+                </div>
+                <span class="col-md-4 profile-error-msg" ng-show="registerProfileForm.registerProfileUsername.$dirty && registerProfileForm.registerProfileUsername.$invalid">用户名不合法！</span>
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub  col-md-2">密码:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="registerProfilePassword" ng-model="registerProfilePassword" ng-pattern="/^[0-9_a-zA-Z]{6,16}$/"
+                           type="password" placeholder="6-16位英文字母或数字" required>
+                </div>
+                <span class="col-md-4 profile-error-msg" ng-show="registerProfileForm.registerProfilePassword.$dirty && registerProfileForm.registerProfilePassword.$invalid">密码格式错误！</span>
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub  col-md-2">确认密码:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="registerProfileConfirmPassword" ng-model="registerProfileConfirmPassword" ng-pattern="/^[0-9_a-zA-Z]{6,16}$/"
+                           type="password" placeholder="6-16位英文字母或数字" required>
+                </div>
+
+                <span class="col-md-4 profile-error-msg" ng-show="registerProfileForm.registerProfileConfirmPassword.$dirty && (registerProfilePassword !=  registerProfileConfirmPassword)">两次密码输入不一致！</span>
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub  col-md-2">手 机:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="registerProfilePhone" ng-model="registerProfilePhone" ng-pattern="/^[0-9]{11}$/" type="text"
+                           placeholder="仅支持中国大陆手机号" required>
+                </div>
+                <span class="col-md-4 profile-error-msg" ng-show="registerProfileForm.registerProfilePhone.$dirty && registerProfileForm.registerProfilePhone.$invalid">请输入正确的手机号！</span>
+            </div>
+
+            <div class="profile-btn col-md-5 col-md-offset-2"
+                   ng-disabled="registerProfileForm.$invalid || (registerProfilePassword != registerProfileConfirmPassword)"
+                 ng-click="signUp()">注册</div>
+        </form>
+    </div>
+
+</div>

@@ -1,0 +1,75 @@
+.profile-panel-sm {
+    background: #fafcfe;
+    border: #dfe8f2 1px solid;
+    margin: 5px;
+    padding: 20px;
+}
+.profile-panel-md {
+    background: #fafcfe;
+    border: #dfe8f2 1px solid;
+    margin: 10px;
+    padding: 30px;
+}
+
+.profile-panel-lg {
+    background: #fafcfe;
+    border: #dfe8f2 1px solid;
+    margin: 20px;
+    padding: 40px;
+}
+.profile-title {
+    margin-top: 10px;
+    font-size: x-large;
+    padding: 10px;
+}
+.profile-title-sub {
+    font-size: medium;
+    line-height: 34px;
+    height: 34px;
+    text-align: right;
+    min-width: 110px;
+}
+.profile-input-wrapper{
+    margin-top: 10px;
+}
+.profile-error-msg{
+    line-height: 34px;
+    height: 34px;
+    font-size: small;
+    color: #ff0000;
+}
+.profile-row {
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+.profile-btn{
+    border-radius: 3px;
+    font-size: medium;
+    margin: 8px;
+    margin-top: 15px;
+    padding: 5px;
+    text-align: center;
+    background: #3199e8;
+    color: #fefefe;
+}
+.profile-btn:hover {
+    background: #228ee8;
+    cursor: pointer;
+}
+.register-head-img {
+    cursor: pointer;
+}
+
+.profile-btn-switcher {
+    border-radius: 2px;
+    font-size: medium;
+    margin-left: 14px;
+    padding: 5px;
+    text-align: center;
+    background: #cdcdcd;
+    color: #fefefe;
+}
+.profile-btn-switcher:hover {
+    background: #3199e8;
+    cursor: pointer;
+}

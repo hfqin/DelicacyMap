@@ -1,0 +1,33 @@
+<div class="header font-yahei" ng-controller="HeaderCtrl">
+    <div class="container font-yahei">
+        <div class="row container">
+            <div class="header-title col-xs-2 col-sm-2 col-md-2 col-lg-2">美食地图</div>
+            <div class="row col-xs-7 col-sm-7 col-md-7 col-lg-7" ng-controller="PageSwitchCtrl">
+                <div class="switch-item col-xs-2 col-sm-2 col-md-2 col-lg-2 font-yahei" ng-click="switch(0)">首页</div>
+                <div class="switch-item col-xs-2 col-sm-2 col-md-2 col-lg-2 font-yahei" ng-click="switch(1)">地图</div>
+                <div class="switch-item col-xs-2 col-sm-2 col-md-2 col-lg-2 font-yahei" ng-click="switch(2)">订单</div>
+                <div class="switch-item col-xs-2 col-sm-2 col-md-2 col-lg-2 font-yahei" ng-click="switch(3)">加盟</div>
+            </div>
+
+            <span ng-show="!isLogin" class="profile-link col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"> <i class="fa fa-user fa-1x"
+                                                                                          ng-show="!isLogin">&nbsp&nbsp</i><a
+                    ui-sref="login">登录</a>/<a ui-sref="register">注册</a></span>
+            <span ng-show="isLogin" class="profile-link profile-link-ol col-md-offset-1 col-lg-offset-1"><img style="width: 32px;height: 32px" ng-src="{{head}}">&nbsp&nbsp&nbsp&nbsp{{username}}</span>
+            &nbsp&nbsp
+            <span ng-show="isLogin" class="dropdown">
+                <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" data-toggle="dropdown" style="width: 20px; background: #449be5; padding: 0px; color: #d5efff">
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1" style="min-width: 120px">
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" ui-sref="profile">个人中心</a>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation">
+                        <a role="menuitem" tabindex="-1" ng-click="logout()" style="cursor: pointer">安全退出</a>
+                    </li>
+                </ul>
+            </span>
+        </div>
+    </div>
+</div>

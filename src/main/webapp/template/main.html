@@ -1,0 +1,38 @@
+
+<div class="main-bg" style="width: 100%;height: 100%">
+    <div class="container">
+        <div class="location-title font-yahei">
+            当前位置：<span>{{location}}</span>
+        </div>
+
+        <div class="category-container font-yahei">
+            <div class="category-title">商家分类：</div>
+            <div class="category-item" ng-repeat="category in categories">{{category}}</div>
+        </div>
+        <div class="restaurant-item-container">
+            <div ng-repeat="restaurant in restaurants" class="restaurant-item font-yahei" ng-click="enterRestaurant(restaurant.rid)">
+                <img class="restaurant-item-img" ng-src="{{restaurant.img}}">
+                <div class="restaurant-item-name">{{restaurant.name}}</div>
+                <div class="restaurant-item-stars rating-container rating-xxs rating-animate">
+                    <div class="rating">
+                        <span class="empty-stars">
+                            <span class="star" ng-repeat="stars in stars">
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            </span>
+                        </span>
+                        <span class="filled-stars" style="width: {{restaurant.star}}%;">
+                            <span class="star" ng-repeat="stars in stars">
+                                <i class="glyphicon glyphicon-star"></i>
+                            </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="restaurant-item-hot">月售44444笔</div>
+                <div class="restaurant-item-avg">人均：{{restaurant.avg}}元/人</div>
+                <div class="restaurant-item-location">{{restaurant.location}}</div>
+                <div class="restaurant-item-wait">{{restaurant.wait}}</div>
+            </div>
+        </div>
+        <div class="click-to-more font-yahei">点击加载更多商家...</div>
+    </div>
+</div>

@@ -1,0 +1,67 @@
+<div class="restaurant-bg" style="width: 100%;height: 100%">
+    <div class="container">
+        <div class="location-title font-yahei col-md-offset-1">
+            当前位置：<span>{{location}}</span>
+        </div>
+
+        <div class="r-info-container font-yahei col-md-10 col-md-offset-1" style="min-width: 800px">
+            <div class="r-info-name font-yahei">{{restaurant.name}}</div>
+            <div class="r-info-stars rating-container rating-xs rating-animate">
+                <div class="rating">
+                        <span class="empty-stars">
+                            <span class="star" ng-repeat="stars in stars">
+                                <i class="glyphicon glyphicon-star-empty"></i>
+                            </span>
+                        </span>
+                        <span class="filled-stars" style="width: {{restaurant.star}}%;">
+                            <span class="star" ng-repeat="stars in stars">
+                                <i class="glyphicon glyphicon-star"></i>
+                            </span>
+                        </span>
+                </div>
+            </div>
+            <div class="r-info-hot">月售44444笔</div>
+            <div class="r-info-split1"></div>
+            <div class="r-info-avg">人均：{{restaurant.avg}}元/人</div>
+            <div class="r-info-location">地址：{{restaurant.location}}</div>
+            <div class="r-info-tel">电话：{{restaurant.tel}}</div>
+            <img class="r-info-img" ng-src="{{restaurant.img}}">
+        </div>
+
+        <div id="restaurantMap"  class="col-md-10 col-md-offset-1" style="height: 240px; min-width: 800px"></div>
+        <br>
+
+
+        <div class="col-md-offset-1 gallery">
+            <div class="gallery-icon">
+                <div class="gallery-icon-icon"></div>
+                <div class="gallery-icon-text">&nbsp&nbsp推荐菜({{galleryItems.length}})</div>
+            </div>
+            <div class="gallery-item" ng-repeat="item in galleryItems">
+                <img  ng-src="{{item.img}}">
+                <div class="font-yahei">{{item.name}}&nbsp&nbsp{{item.price}}</div>
+            </div>
+        </div>
+
+        <div class="comment-wrapper col-md-10 col-md-offset-1">
+            <div class="comment-icon">
+                <div class="comment-icon-icon"></div>
+                <div class="comment-icon-text">&nbsp&nbsp全部点评({{items.length}})</div>
+            </div>
+            <div class="comment-item" ng-repeat="item in items">
+                <img class="comment-item-head img-responsive col-xs-1 col-sm-1 col-md-1 col-lg-1" ng-src="{{item.head}}"/>
+                <div class="comment-item-username col-xs-2 col-sm-2 col-md-2 col-lg-2">{{item.username+" :"}}</div>
+                <div class="comment-item-content col-xs-11 col-sm-11 col-md-11 col-lg-11">{{item.message}}</div>
+                <div class="comment-item-time col-xs-2 col-sm-4 col-md-4 col-lg-2 col-xs-offset-10 col-sm-offset-8 col-md-offset-8 col-lg-offset-10">{{item.time}}</div>
+                <div class="comment-item-split col-xs-11 col-sm-11 col-md-11 col-lg-11 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 col-lg-offset-1"></div>
+            </div>
+            <div class="comment-get-more col-xs-8 col-sm-8 col-md-8 col-xs-offset-2 col-sm-offset-2 col-md-offset-2" ng-click="commentGetMore()">加载更多</div>
+            <div class="comment-inputer">
+                <textarea ng-model="commentContent"></textarea>
+            </div>
+            <div class="comment-submit col-md-2 col-md-offset-10" ng-click="comment()">提交</div>
+        </div>
+
+
+    </div>
+</div>

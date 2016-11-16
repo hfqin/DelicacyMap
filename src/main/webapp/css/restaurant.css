@@ -1,0 +1,152 @@
+.restaurant-bg{
+    background: #f4f4f4;
+}
+.r-info-container {
+    float: left;
+    height: 200px;
+    background: #ffffff;
+    border: #e6e6e6 1px solid;
+}
+.r-info-name {
+    font-size: xx-large;
+    margin-top: 20px;
+    margin-left: 20px;
+}
+.r-info-stars {
+    float: left;
+    margin-top: 2px;
+    margin-left: 20px;
+}
+.r-info-hot {
+    float: left;
+    padding-left: 15px;
+    padding-right: 15px;
+    height: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    font-size: medium;
+    color: #999;
+}
+.r-info-avg {
+    float: left;
+    font-size: medium;
+    height: 29px;
+    line-height: 29px;
+    vertical-align: middle;
+    color: #999;
+}
+.r-info-location {
+    margin-left: 20px;
+    float: left;
+    font-size: medium;
+    width: 100%;
+    margin-top: 6px;
+    color: #999;
+}
+.r-info-split1 {
+    float: left;
+    width: 2px;
+    height: 15px;
+    background: #e5e5e5;
+    margin-top: 8px;
+    margin-right: 15px;
+}
+.r-info-img {
+    float: right;
+    margin-right: 20px;
+    width: 150px;
+    height: 150px;
+    position: relative;
+    top:-130px;
+}
+.r-info-tel {
+    margin-left: 20px;
+    float: left;
+    font-size: medium;
+    width: 100%;
+    margin-top: 6px;
+    color: #999;
+}
+
+.gallery {
+    float: left;
+    width: 950px;
+    margin-top: 70px;
+    height: auto;
+    overflow: hidden;
+    background: #ffffff;
+    padding-top: 20px;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-bottom: 60px;
+}
+.gallery-icon {
+    margin-bottom: 10px;
+    height: 22px;
+    vertical-align:middle;
+}
+.gallery-icon-text {
+    float: left;
+    height: 22px;
+    font-size: 18px;
+    font-family: "Microsoft YaHei UI";
+    font-weight: bold;
+    line-height: 22px;
+    text-align: center;
+    color:#676767;
+}
+.gallery-icon-icon{
+    float: left;
+    background: #3199e8;
+    width: 23px;
+    height: 22px;
+    margin-right: 5px;
+}
+.gallery-item {
+    width: 130px;
+    height: 130px;
+    margin-left: 11px;
+    margin-right: 11px;
+    margin-bottom: 20px;
+    float: left;
+    background: #ffffff;
+    border: 1px #e6e6e6 solid;
+}
+.gallery-item:hover {
+    border: 1px #3199e8 solid;
+    cursor: pointer;
+}
+.gallery-item:hover > div {
+    color: #3199e8;
+}
+
+.gallery-item > img {
+    width: 100%;
+    height: 100px;
+}
+.gallery-item > div {
+    padding-left: 5px;
+    line-height: 28px;
+    height: 28px;
+    vertical-align: middle;
+}
+
+@media(max-width:1200px){
+    .gallery {
+        width: 800px;
+    }
+    .gallery-item {
+        width: 120px;
+        height: 120px;
+        margin-left: 17px;
+        margin-right: 17px;
+        margin-bottom: 15px;
+        float: left;
+        background: #ffffff;
+        border: 1px #e6e6e6 solid;
+    }
+    .gallery-item > img {
+        width: 100%;
+        height: 90px;
+    }
+}

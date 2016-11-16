@@ -1,0 +1,65 @@
+<div class="container font-yahei profile-panel-lg">
+    <input id="profile-upload-file-hidden" name="profileUploadFile" onchange="profile_preview_head()" type="file"
+           style="visibility: hidden">
+
+    <div class="col-md-7 col-md-offset-1">
+        <div class="profile-title">个人信息</div>
+        <form name="profileForm" novalidate>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub col-md-2">头像&nbsp:</div>
+                <img class="img-responsive col-md-4 register-head-img" id="profile-avatar-img"
+                     ng-src="{{profileHead}}" onclick="profile_uploadImg()">
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub  col-md-2">手机号&nbsp:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="profilePhone" ng-model="profilePhone"
+                           ng-pattern="/^[0-9]{11}$/" type="text"
+                           placeholder="仅支持中国大陆11位手机号" disabled="disabled">
+                </div>
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub col-md-2">用户名&nbsp:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="profileUsername" ng-model="profileUsername"
+                           ng-minlength="1" ng-maxlength="10" type="text"
+                           placeholder="请输入1-10位字符" required>
+                </div>
+                <span class="col-md-4 profile-error-msg"
+                      ng-show="profileForm.profileUsername.$dirty && profileForm.profileUsername.$invalid">鐢ㄦ埛鍚嶄笉鍚堟硶锛�</span>
+            </div>
+
+            <div class="row profile-row">
+                <div class="profile-title-sub col-md-2">修改密码&nbsp:</div>
+                <div class="profile-btn-switcher col-xs-4 col-sm-4 col-md-2" ng-click="showPasswordBtn()">{{showPasswordText}}</div>
+            </div>
+
+            <div class="row profile-row" ng-show="showPassword">
+                <div class="profile-title-sub  col-md-2">原密码&nbsp:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="oldProfilePassword" ng-model="oldProfilePassword"
+                           ng-pattern="/^[0-9_a-zA-Z]{6,16}$/"
+                           type="password" placeholder="6-16英文字母和数字" required>
+                </div>
+            </div>
+
+            <div class="row profile-row" ng-show="showPassword">
+                <div class="profile-title-sub  col-md-2">新密码&nbsp:</div>
+                <div class="col-md-5">
+                    <input class="form-control" name="newProfilePassword"
+                           ng-model="newProfilePassword" ng-pattern="/^[0-9_a-zA-Z]{6,16}$/"
+                           type="password" placeholder="6-16英文字母和数字" required>
+                </div>
+                <span class="col-md-4 profile-error-msg"
+                      ng-show="profileForm.newProfilePassword.$dirty && profileForm.newProfilePassword.$invalid">瀵嗙爜鏍煎紡閿欒锛�</span>
+            </div>
+            <div class="row profile-row">
+                <div class="profile-btn col-md-5 col-md-offset-2" ng-click="saveModify()">保存</div>
+            </div>
+        </form>
+    </div>
+
+</div>

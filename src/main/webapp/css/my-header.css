@@ -1,0 +1,51 @@
+.header {
+    width: 100%;
+    height: 60px;
+    background: #1e89e0;
+}
+.header-title {
+    height: 60px;
+    color: #fefefe;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: x-large;
+    min-width: 158px;
+}
+
+.header-title:hover {
+    cursor: pointer;
+}
+
+.switch-item {
+    height: 60px;
+    color: #fefefe;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: large;
+    min-width: 87px;
+}
+
+.switch-item:hover {
+    background: #006bc7;
+    cursor: pointer;
+}
+
+.profile-link {
+    height: 60px;
+    color: #fefefe;
+    line-height: 60px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: medium;
+}
+
+.profile-link > a {
+    color: #fefefe;
+}
+
+.profile-link > a:hover {
+    color: #fefefe;
+    text-decoration: none;
+}
