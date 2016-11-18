@@ -26,7 +26,10 @@ angular.module('headerModule', ['registerModule', 'loginModule', 'pageSwitchModu
                     console.log(response);
                     if (response.errcode == 0) {
                         console.log("logout");
-                        $rootScope.isLogin = false;
+                        $rootScope.$apply(function(){
+                        	$rootScope.isLogin = false;
+                        });
+                        
 
                         if (window.localStorage) {
                             console.log("localStorage ", "login");

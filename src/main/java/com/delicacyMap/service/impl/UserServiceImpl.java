@@ -26,6 +26,7 @@ public class UserServiceImpl implements IUserService{
 	public void add(User user) {
 		// TODO Auto-generated method stub
 		entityDAO.save(user);
+		System.out.println(user.getId());
 	}
 
 	@Override

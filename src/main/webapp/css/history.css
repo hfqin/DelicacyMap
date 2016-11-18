@@ -1,0 +1,98 @@
+.history-item-0{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 150px;
+    min-width: 630px;
+    background: #daf3cf;
+    border-top: #2fb319 1px solid;
+    border-bottom: #2fb319 1px solid;
+    border-left: #2fb319 1px solid;
+    border-right: #ffffff 2px dashed;
+}
+.history-item-1{
+    margin-left: 20px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 150px;
+    min-width: 630px;
+    background: #f5f5f5;
+    border-top: #e6e6e6 1px solid;
+    border-bottom: #e6e6e6 1px solid;
+    border-left: #e6e6e6 1px solid;
+    border-right: #ffffff 2px dashed;
+}
+.history-use-0 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    height: 150px;
+    min-width: 160px;
+    background: #daf3cf;
+    color: #2fb319;
+    line-height: 150px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: x-large;
+    border-top: #2fb319 1px solid;
+    border-bottom: #2fb319 1px solid;
+    border-left: #ffffff 2px dashed;
+    border-right: #2fb319 1px solid;
+}
+
+.history-use-1 {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    min-width: 160px;
+    height: 150px;
+    background: #f5f5f5;
+    color: #999;
+    line-height: 150px;
+    vertical-align: middle;
+    text-align: center;
+    font-size: x-large;
+    border-top: #e6e6e6 1px solid;
+    border-bottom: #e6e6e6 1px solid;
+    border-left: #ffffff 2px dashed;
+    border-right: #e6e6e6 1px solid;
+}
+
+.history-item-img {
+    float: left;
+    margin-left: 20px;
+    margin-top: 35px;
+    margin-bottom: 35px;
+    width: 80px;
+    height: 80px;
+}
+.history-item-name {
+    float: left;
+    text-align: left;
+    width: 100%;
+    margin-left: 20px;
+    height: 25px;
+    line-height: 25px;
+    font-size: large;
+    vertical-align: middle;
+}
+
+.history-item-time {
+    float: left;
+    text-align: left;
+    width: 100%;
+    margin-left: 20px;
+    margin-top: 10px;
+    height: 20px;
+    line-height: 20px;
+    font-size: medium;
+    vertical-align: middle;
+}
+
+.history-item-num {
+    float: left;
+    margin-top: 35px;
+    height: 80px;
+    line-height: 80px;
+    font-size: x-large;
+    vertical-align: middle;
+}

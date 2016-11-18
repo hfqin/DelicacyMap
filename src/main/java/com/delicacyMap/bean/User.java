@@ -12,6 +12,11 @@ import java.util.Set;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.alibaba.fastjson.annotation.JSONCreator;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+
 
 @Entity
 @Table(name="user")
@@ -38,6 +43,9 @@ public class User implements Serializable{
 	@Column(name="head_img")
 	private String headImg;
 
+	@OneToOne(fetch=FetchType.LAZY,cascade=CascadeType.MERGE)
+	private Store store;
+	
 	public Integer getId() {
 		return id;
 	}
@@ -77,6 +85,16 @@ public class User implements Serializable{
 	public void setHeadImg(String headImg) {
 		this.headImg = headImg;
 	}
+
+	@JsonIgnore
+	public Store getStore() {
+		return store;
+	}
+
+	public void setStore(Store store) {
+		this.store = store;
+	}
+
 	
 
 

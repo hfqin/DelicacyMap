@@ -54,7 +54,7 @@ public class EntityDAO<T, PK extends Serializable> extends HibernateDaoSupport {
 	 *            实体对象
 	 */
 	public void save(T t) {
-		getHibernateTemplate().merge(t);
+		getHibernateTemplate().save(t);
 	}
 
 	/**
@@ -64,7 +64,7 @@ public class EntityDAO<T, PK extends Serializable> extends HibernateDaoSupport {
 	 *            实体对象
 	 */
 	public void update(T t) {
-		getHibernateTemplate().merge(t);
+		getHibernateTemplate().update(t);
 	}
 
 	/**

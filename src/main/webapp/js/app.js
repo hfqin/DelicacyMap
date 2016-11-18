@@ -9,7 +9,9 @@ angular.module('myApp', [
       'headerModule',
       'mapModule',
       'restaurantModule',
-      'profileModule'
+      'profileModule',
+      'joinModule',
+      'historyModule'
     ])
     .config(['$stateProvider','$urlRouterProvider',function($stateProvider,$urlRouterProvider) {
       $stateProvider
@@ -67,7 +69,24 @@ angular.module('myApp', [
                   }
               }
           })
-
+          .state('join',{
+              url: '/join',
+              views: {
+                  'join': {
+                      templateUrl: 'template/join.html',
+                      controller: 'JoinCtrl'
+                  }
+              }
+          })
+          .state('history',{
+              url: '/history',
+              views: {
+                  'history': {
+                      templateUrl: 'template/history.html',
+                      controller: 'HistoryCtrl'
+                  }
+              }
+          })
 
 
 

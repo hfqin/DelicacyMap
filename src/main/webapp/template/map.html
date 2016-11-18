@@ -29,23 +29,23 @@
                         </span>
                     </div>
                 </div>
-                <div class="restaurant-item-hot col-xs-4 col-sm-4 col-md-4">月售44444笔</div>
+                <div class="restaurant-item-hot col-xs-4 col-sm-4 col-md-4">{{restaurant.commentNum}}条评论</div>
                 <div class="restaurant-item-avg col-xs-4 col-sm-4 col-md-4">人均：{{restaurant.avg}}元/人</div>
-                <div class="restaurant-item-location col-xs-12 col-sm-12 col-md-1212">{{restaurant.location}}</div>
+                <div class="restaurant-item-location col-xs-12 col-sm-12 col-md-1212">{{restaurant.location.text}}</div>
             </div>
             <div class="col-xs-3 col-sm-3 col-md-3 enter-btn-lg" ng-click="enterRestaurant(restaurant.rid)">
                 <div class="col-md-10 col-md-offset-1 enter-btn-enter">
                     进入餐馆
                 </div>
                 <div class="col-md-10 col-md-offset-1 enter-btn-wait">
-                    等候：{{restaurant.wait}}
+                    等候：{{restaurant.wait}}桌
                 </div>
             </div>
 
         </div>
     </div>
     <div class="col-xs-12 col-sm-12 col-md-12" style="height: 25px"></div>
-    <div class="click-to-more col-xs-10 col-sm-10 col-md-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 font-yahei">点击加载更多商家...</div>
+    <div class="click-to-more col-xs-10 col-sm-10 col-md-10 col-xs-offset-1 col-sm-offset-1 col-md-offset-1 font-yahei" ng-click="getMore()">点击加载更多商家...</div>
 
 
 </div>

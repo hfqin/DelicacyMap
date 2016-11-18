@@ -13,5 +13,13 @@ angular.module('pageSwitchModule',[])
         if (item == 1) {
             $state.go('map');
         }
+
+        if (item == 2) {
+            $state.go('history');
+        }
+
+        if (item == 3) {
+            $state.go('join');
+        }
     }
 }]);

@@ -1,19 +1,38 @@
 /**
  * Created by HF Q on 2016/11/6.
  */
+var server = window.localStorage ? localStorage.getItem("serverAddress") : Cookie.read("serverAddress");
 angular.module('restaurantModule', [])
-    .controller('RestaurantCtrl', ['$scope','$http', function ($scope,$http) {
+    .controller('RestaurantCtrl', ['$scope','$http', '$stateParams','$state','$rootScope',function ($scope,$http,$stateParams,$state,$rootScope) {
         $scope.stars = [1, 2, 3, 4, 5];
-        $scope.restaurant = {
-            'rid': 1,
-            'name': '快乐堡',
-            'star': '65',
-            'img': 'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-            'location': '蔡伦路1433号',
-            'avg': '15',
-            'wait': '15分钟',
-            'tel': '15221871781'
-        };
+
+        var url = server + 'store/get/'+$stateParams.rid;
+        $.ajax({
+            type: 'GET',
+            url: url,
+            dataType: 'json',
+            success: function (response) {
+                console.log(response);
+                if (response.errcode == 0) {
+                	$scope.$apply(function(){
+                		 $scope.restaurant = {};
+                         $scope.restaurant.rid = response.data.id;
+                         $scope.restaurant.category = response.data.category;
+                         $scope.restaurant.name = response.data.name;
+                         $scope.restaurant.star = response.data.star;
+                         $scope.restaurant.img = response.data.img;
+                         $scope.restaurant.lat = response.data.lat;
+                         $scope.restaurant.lng = response.data.lng;
+                         $scope.restaurant.location = response.data.location;
+                         $scope.restaurant.avg = response.data.avg;
+                         $scope.restaurant.wait = response.data.wait;
+                         $scope.restaurant.tel = response.data.tel;
+                         $scope.restaurant.commentNum = response.data.commentNum;
+                	});               
+                }
+            }
+        });
+
 
         $scope.galleryItems = [{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'},{'img':'img/head-square.jpg','name':'辣子鸡','price':'25元'}];
 
@@ -42,12 +61,20 @@ angular.module('restaurantModule', [])
 
         function getMoreComments(start, limit) {
             console.log(localStorage.getItem("serverAddress"));
-            $http.get(server + "/commentListGet")
-                .success(function (response) {
+
+            var url = server + 'comment/get';
+            var json = {"id": $stateParams.rid};
+            $.ajax({
+                type: 'POST',
+                data: JSON.stringify(json),
+                contentType: "application/json",
+                url: url,
+                dataType: 'json',
+                success: function (response) {
                     console.log(response);
-                    if (response.error_type == 0) {
-                        var commentList = response.commentList;
-                        total = response.total;
+                    if (response.errcode == 0) {
+                        var commentList = response.data.commentList;
+                        total = response.data.total;
                         for (var i = 0; i < commentList.length; i++) {
                             $scope.items[start + i] = {
                                 index: i,
@@ -63,10 +90,8 @@ angular.module('restaurantModule', [])
                             }
                         }
                     }
-                })
-                .error(function (error) {
-
-                })
+                }
+            });
         }
 
 
@@ -81,86 +106,62 @@ angular.module('restaurantModule', [])
         }
 
 
-        $scope.openReply = function (item) {
-            console.log("click more " + item.index);
 
-            $('#reply-panel' + item.index).toggle();
-            if ($('#reply-panel' + item.index)[0].style.display == 'block') {
-                $('#more' + item.index).html('收起');
-            } else {
-                $('#more' + item.index).html('展开');
-            }
-
-            var replys;
-            $http.get(server + "/commentListGet").success(function (response) {
-                replys = response.commentList;
-
-                for (var i = 0; i < replys.length; i++) {
-                    replys[i].time = replys[i].time.toString().split('T')[0] + " " + replys[i].time.toString().split('T')[0];
-                }
-
-
-                $scope.items[item.index].replys = replys;
-                console.log(response);
-                console.log(replys);
-            }).error(function () {
-
-            });
-
-        }
-
-        $scope.reply = function (item, index) {
-            var commentedID = item.cid;
-            var text = item.myReply;
-            console.log(commentedID + " " + text);
-
-            $http.get(server + "/commentSave")
-                .success(function (response) {
-                    console.log(response);
-                    if (response.error_type == 0) {
-                        layer.msg('回复成功');
-                        item.myReply = "";
-                        var newIndex = $scope.items[item.index].replys.length;
-                        var newReply = response.comment;
-                        newReply.time = newReply.time.toString().split('T')[0] + " " + newReply.time.toString().split('T')[1];
-                        $scope.items[item.index].replys[newIndex] = newReply;
-                    }
-                })
-                .error(function (error) {
-
-                })
-            console.log(text);
-
-
-        }
         $scope.comment = function () {
             var text = $scope.commentContent;
-            $http.get(server + "/commentSave")
-                .success(function (response) {
-                    console.log(response);
-                    if (response.error_type == 0) {
+
+            var url = server + 'comment/add';
+            var json = {};
+            json.content = text;
+            json.storeId = $stateParams.rid;
+            json.score = 78;
+            
+            $.ajax({
+                type: 'POST',
+                url: url,
+                data: JSON.stringify(json),
+                contentType: "application/json",
+                dataType: 'json',
+                success: function (response) {
+                    console.log(response);         
+                    if (response.errcode == 0) {
+                    	$scope.$apply(function(){
+                    		$scope.commentContent = "";
+
+                             var newIndex = $scope.items.length;
+                              var newComment = response.data;
+                              $scope.items[newIndex] = {
+                                  index: newIndex,
+                                  cid: newComment.cid,
+                                  commentedId: 0,
+                                  headImg: $rootScope.head,
+                                  message: newComment.content,
+                                  time: newComment.createTime,
+                                  score: newComment.score,
+                                  uid: newComment.uid,
+                                  username: newComment.username,
+                                  vid: newComment.vid,
+                                  replys: []
+                              }
+                          });
                         layer.msg('评论成功');
-                        $scope.commentContent = "";
+                        
+                    } else if (response.errcode == 304) {
+                    	layer.msg('未登录！');
+                    	$rootScope.isLogin = false;
 
-                        var newIndex = $scope.items.length;
-                        var newComment = response.comment;
-                        $scope.items[newIndex] = {
-                            index: newIndex,
-                            cid: newComment.cid,
-                            commentedId: 0,
-                            headImg: newComment.headImg,
-                            message: newComment.message,
-                            time: newComment.time.toString().split('T')[0] + " " + newComment.time.toString().split('T')[1],
-                            uid: newComment.uid,
-                            username: newComment.username,
-                            vid: newComment.vid,
-                            replys: []
+                        if (window.localStorage) {
+                            console.log("localStorage ", "login");
+                            localStorage.setItem("isLogin", "offline");
+                        } else {
+                            console.log("cookie");
+                            Cookie.write("isLogin", "offline");
                         }
+                    	$state.go('login');
                     }
-                })
-                .error(function (error) {
+                }
+            });
 
-                })
             console.log(text);
         }
 

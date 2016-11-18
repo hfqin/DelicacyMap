@@ -48,6 +48,7 @@ angular.module('registerModule', [])
                                         $state.go('login');
                                     } else {
                                         layer.msg('注册成功！网络迟缓，请稍后重新设置头像~');
+                                        $state.go('login');
                                     }
                                 }
                             });

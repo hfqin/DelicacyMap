@@ -28,6 +28,7 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 	@ResponseBody
 	public ModelAndView resolveException(HttpServletRequest request, HttpServletResponse response, Object handler, Exception ex) {
 		LOG.error("访问" + request.getRequestURI() + " 发生错误, 错误信息:" + ex.getMessage());
+		ex.printStackTrace();
 		//这里有2种选择
 		//跳转到定制化的错误页面
 	    /*ModelAndView error = new ModelAndView("error");
@@ -39,7 +40,9 @@ public class GlobalExceptionResolver implements HandlerExceptionResolver {
 			BaseResult<String> result=new BaseResult(false, ex.getMessage());
 			writer.write(JSON.toJSONString(result));
 			writer.flush();
+			writer.close();
 		} catch (Exception e) {
+			e.printStackTrace();
 			LOG.error("Exception:",e);
 		}
 		return null;

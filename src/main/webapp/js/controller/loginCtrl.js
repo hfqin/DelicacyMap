@@ -52,6 +52,8 @@ angular.module('loginModule', [])
                         }
 
                         $state.go('main');
+                    } else {
+                    	layer.msg('登录失败！');
                     }
                 }
             });

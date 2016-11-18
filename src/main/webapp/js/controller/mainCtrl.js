@@ -9,76 +9,94 @@ angular.module('mainModule',[])
         $scope.location = "浦东新区蔡伦路1433号";
 
 
+        var geolocation = new BMap.Geolocation();
+        var myPoint = new BMap.Point(121.48789949, 31.24916171);
+
+        var located = false;
+
+        setInterval(function () {
+            geolocation.getCurrentPosition(function (r) {
+                if (this.getStatus() == BMAP_STATUS_SUCCESS) {
+                    myPoint = r.point;
+                    located = true;
+                    //console.log('您的位置：' + r.point.lng + ',' + r.point.lat);
+                }
+            }, {enableHighAccuracy: true})
+        },1000);
+
+        var start = 0;
+        var limit = 4;
         var url = server + 'store/get';
+        var json = {};
+        json.start = start;
+        json.limit = limit;
         $.ajax({
-            type: 'GET',
+            type: 'POST',
             url: url,
+            data: JSON.stringify(json),
+            contentType: "application/json",
             dataType: 'json',
             success: function (response) {
             	console.log(response);
-                $scope.restaurants = [];
-                for (var i=0;i<response.length;i++) {
-                    $scope.restaurants[i] = {};
-                    $scope.restaurants[i].rid = response[i].rid;
-                }
+            	$scope.$apply(function(){
+            		$scope.restaurants = [];
+            		 for (var i=0;i<response.data.length;i++) {
+                         $scope.restaurants[i] = {};
+                         $scope.restaurants[i].rid = response.data[i].id;
+                         $scope.restaurants[i].name = response.data[i].name;
+                         $scope.restaurants[i].img = response.data[i].img;
+                         $scope.restaurants[i].location = {};
+                         $scope.restaurants[i].location.text = response.data[i].text;
+                         $scope.restaurants[i].location.lat = response.data[i].lat
+                         $scope.restaurants[i].location.lng = response.data[i].lng;
+                         $scope.restaurants[i].commentNum = response.data[i].commentNum;
+                         $scope.restaurants[i].tel = response.data[i].tel;
+                         $scope.restaurants[i].category = response.data[i].category;
+                         $scope.restaurants[i].wait = response.data[i].wait;
+                     }
+            		 start += response.data.length;
+            	});                      
+            	console.log($scope.restaurants);
             }
         });
 
-
-        $scope.restaurants = [
-            {
-                'rid':1,
-                'name':'快乐堡',
-                'star':'95',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':{'text':'蔡伦路1433号','lat':123.1,'lng':34.2},
-                'avg':'15',
-                'commentCounts':4,
-                'tel':'15221871781',
-                'wait':'15分钟'},
-            {
-                'rid':2,
-                'name':'快乐堡',
-                'star':'55',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':'紫薇路高斯路',
-                'avg':'15',
-                'wait':'15分钟'},
-            {
-                'rid':3,
-                'name':'快乐堡',
-                'star':'78',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':'申江路',
-                'avg':'15',
-                'wait':'15分钟'},
-            {
-                'rid':4,
-                'name':'快乐堡',
-                'star':'78',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':'华佗路333号',
-                'avg':'15',
-                'wait':'15分钟'},
-            {
-                'rid':5,
-                'name':'快乐堡',
-                'star':'78',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':'11',
-                'avg':'15',
-                'wait':'15分钟'},
-            {
-                'rid':6,
-                'name':'快乐堡',
-                'star':'78',
-                'img':'https://fuss10.elemecdn.com/e/57/81f8dc8ef5dd1401626053024b805png.png?imageMogr2/thumbnail/70x70/format/webp/quality/85',
-                'location':'11',
-                'avg':'15',
-                'wait':'15分钟'}];
-
-
         $scope.enterRestaurant = function(rid){
             $state.go('restaurant',{'rid':rid});
+        }
+        
+        $scope.getMore = function() {
+        	 var url = server + 'store/get';
+             var json = {};
+             json.start = start;
+             json.limit = limit;
+        	 $.ajax({
+                 type: 'POST',
+                 url: url,
+                 data: JSON.stringify(json),
+                 contentType: "application/json",
+                 dataType: 'json',
+                 success: function (response) {
+                 	console.log(response);
+                 	$scope.$apply(function(){             
+                 		 for (var i=0;i<response.data.length;i++) {
+                              $scope.restaurants[start+i] = {};
+                              $scope.restaurants[start+i].rid = response.data[i].id;
+                              $scope.restaurants[start+i].name = response.data[i].name;
+                              $scope.restaurants[start+i].img = response.data[i].img;
+                              $scope.restaurants[start+i].location = {};
+                              $scope.restaurants[start+i].location.text = response.data[i].text;
+                              $scope.restaurants[start+i].location.lat = response.data[i].lat
+                              $scope.restaurants[start+i].location.lng = response.data[i].lng;
+                              $scope.restaurants[start+i].commentNum = response.data[i].commentNum;
+                              $scope.restaurants[start+i].tel = response.data[i].tel;
+                              $scope.restaurants[start+i].category = response.data[i].category;
+                              $scope.restaurants[start+i].wait = response.data[i].wait;
+                          }
+                 		 start += response.data.length;
+                 	});                      
+                 	console.log($scope.restaurants);
+                 }
+             });
+
         }
     }]);

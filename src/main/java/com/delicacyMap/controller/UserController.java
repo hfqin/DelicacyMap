@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.alibaba.druid.util.StringUtils;
+import com.delicacyMap.bean.Store;
 import com.delicacyMap.bean.User;
 import com.delicacyMap.controller.model.Model;
 import com.delicacyMap.controller.model.UserLoginModel;
@@ -25,6 +26,7 @@ import com.delicacyMap.controller.model.UserUpdateModel;
 import com.delicacyMap.dto.BaseResult;
 import com.delicacyMap.enums.ResultEnum;
 import com.delicacyMap.exception.BizException;
+import com.delicacyMap.service.IStoreService;
 import com.delicacyMap.service.IUserService;
 import com.delicacyMap.util.RandomUtil;
 
@@ -34,6 +36,9 @@ public class UserController {
 
 	@Autowired
 	IUserService userService;
+	
+	@Autowired
+	IStoreService storeService;
 	
 	@RequestMapping(value="/get", method=RequestMethod.GET)
 	@ResponseBody
@@ -74,6 +79,11 @@ public class UserController {
 		}
 		
 		session.setAttribute("user", user);
+		
+		Store store = storeService.getByUid(user.getId());
+		if (store != null) {
+			session.setAttribute("store", store);
+		}
 		return new BaseResult<Object>(true, user);
 	}
 	
@@ -90,7 +100,7 @@ public class UserController {
 		}
 		
 		userService.update(user);
-		return new BaseResult<Object>();
+		return new BaseResult<Object>(true, user);
 	}
 	
 	@RequestMapping(value = "/uploadImg", method=RequestMethod.POST, produces={"application/json;charset=UTF-8"})  
@@ -113,8 +123,7 @@ public class UserController {
   
         user.setHeadImg("upload/" + fileName);
         userService.update(user);
-        System.out.println(user.getHeadImg());
-        return new BaseResult<Object>();  
+        return new BaseResult<Object>(true, user.getHeadImg());  
     }  
 	
 	@RequestMapping(value="status", method=RequestMethod.GET, produces={"application/json;charset=UTF-8"})

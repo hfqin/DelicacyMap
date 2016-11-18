@@ -1,0 +1,97 @@
+<div class="container profile-panel-lg font-yahei">
+	<input id="restaurant_post_input_hidden"
+		onchange="restaurant_post_change()" type="file"
+		style="visibility: hidden">
+	<div class="col-md-4">
+		<div class="profile-title">餐馆logo</div>
+		<img class="img-responsive register-head-img" id="restaurant-post-img"
+			ng-src="img/default_head.png" onclick="restaurant_post_uploadImg()">
+
+		<br>
+		<div id="joinMap" class="col-md-10"
+			style="height: 240px;"></div>
+	</div>
+
+	<div class="col-md-7 col-md-offset-1">
+
+		<div class="profile-title">餐馆基本信息</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub col-md-2">餐馆名字&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="name" ng-minlength="1"
+					ng-maxlength="10" type="text" placeholder="请输入1-10位字符" required>
+			</div>
+		</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub  col-md-2">餐馆位置&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="location" placeholder="区/街道/弄"
+					required>
+			</div>
+			<div class="col-md-offset-2 col-md-5">
+				<input class="form-control" ng-model="lng" placeholder="在地图上点击餐馆位置获取经度" required
+					style="margin-top: 5px"> <input class="form-control"
+					ng-model="lat" placeholder="在地图上点击餐馆位置获取纬度" required style="margin-top: 5px">
+			</div>
+		</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub  col-md-2">餐馆类别&nbsp:</div>
+			<div class="col-md-5">
+				<div class="dropdown">
+					<button type="button" class="btn dropdown-toggle"
+						id="dropdownMenu1" data-toggle="dropdown">
+						{{categoryText}}&nbsp&nbsp<span class="caret"></span>
+					</button>
+					<ul class="dropdown-menu" role="menu"
+						aria-labelledby="dropdownMenu1">
+						<li role="presentation" ng-repeat="item in categories"><a
+							role="menuitem" tabindex="-1"
+							ng-click="selectCategory(item.index)">{{item.text}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+
+
+
+		<div class="row profile-row">
+			<div class="profile-title-sub col-md-2">餐馆电话&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="tel"
+					ng-pattern="/^[0-9]{11}$/" placeholder="仅支持中国大陆手机号" required>
+			</div>
+
+		</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub col-md-2">人均消费&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="avg" type="text"
+					placeholder="50元/人" required>
+			</div>
+		</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub col-md-2">餐馆简介&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="description" type="text"
+					placeholder="餐馆简介" required>
+			</div>
+		</div>
+
+		<div class="row profile-row">
+			<div class="profile-title-sub col-md-2">邀请码&nbsp:</div>
+			<div class="col-md-5">
+				<input class="form-control" ng-model="validCode" type="text"
+					placeholder="6位邀请码" required>
+			</div>
+		</div>
+
+		<div class="profile-btn col-md-5 col-md-offset-2" ng-click="join()">申请加盟</div>
+	</div>
+
+
+</div>

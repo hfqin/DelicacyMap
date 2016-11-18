@@ -22,15 +22,15 @@ public enum ResultEnum {
 	NO_PERMISSION(302, "无该操作权限"),
 	PASSWORD_ERROR(303,"密码错误"),
 	NOT_LOGIN(304, "未登录"),
-	
+	VALID_CODE_ERROR(305,"code错误"),	
 	OPERATION_FREQUENTLY(401, "操作过于频繁"),
 	ALREADY_EXSITS(402, "已存在"),
 	PIN_ERROR(403, "pin错误"),
 	NOT_EXSITS(404, "数据不存在"),
 	DELETE_FAIL(405, "无法删除"),
-	
+
 	SERVER_ERROR(500, "服务器内部错误"),
-	HHH(03102301023,"hhh");
+	HHH(03102301023,"hhh") ;
 
 	private int state;
 

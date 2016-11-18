@@ -29,7 +29,7 @@
                            placeholder="请输入1-10位字符" required>
                 </div>
                 <span class="col-md-4 profile-error-msg"
-                      ng-show="profileForm.profileUsername.$dirty && profileForm.profileUsername.$invalid">鐢ㄦ埛鍚嶄笉鍚堟硶锛�</span>
+                      ng-show="profileForm.profileUsername.$dirty && profileForm.profileUsername.$invalid">用户名格式错误</span>
             </div>
 
             <div class="row profile-row">
@@ -54,7 +54,7 @@
                            type="password" placeholder="6-16英文字母和数字" required>
                 </div>
                 <span class="col-md-4 profile-error-msg"
-                      ng-show="profileForm.newProfilePassword.$dirty && profileForm.newProfilePassword.$invalid">瀵嗙爜鏍煎紡閿欒锛�</span>
+                      ng-show="profileForm.newProfilePassword.$dirty && profileForm.newProfilePassword.$invalid">密码格式错误</span>
             </div>
             <div class="row profile-row">
                 <div class="profile-btn col-md-5 col-md-offset-2" ng-click="saveModify()">保存</div>

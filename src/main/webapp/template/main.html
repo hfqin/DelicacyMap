@@ -27,12 +27,12 @@
                         </span>
                     </div>
                 </div>
-                <div class="restaurant-item-hot">月售44444笔</div>
+                <div class="restaurant-item-hot">{{restaurant.commentNum}}条评论</div>
                 <div class="restaurant-item-avg">人均：{{restaurant.avg}}元/人</div>
-                <div class="restaurant-item-location">{{restaurant.location}}</div>
+                <div class="restaurant-item-location">{{restaurant.location.text}}</div>
                 <div class="restaurant-item-wait">{{restaurant.wait}}</div>
             </div>
         </div>
-        <div class="click-to-more font-yahei">点击加载更多商家...</div>
+        <div class="click-to-more font-yahei" ng-click="getMore()">点击加载更多商家...</div>
     </div>
 </div>

@@ -61,6 +61,11 @@ angular.module('profileModule',[])
         json.newPassword = $scope.newProfilePassword;
         console.log(json);
 
+        if (!((json.oldPassword == undefined && json.newPassword == undefined) || (json.oldPassword != undefined && json.newPassword != undefined))) {
+        	layer.msg('修改密码请填写完整！');
+        	return;
+        }
+        
         $.post({
             url: url,
             data: JSON.stringify(json),
@@ -69,6 +74,20 @@ angular.module('profileModule',[])
             success: function (response) {
                 console.log(response);
                 if (response.errcode == 0) {
+                	$rootScope.$apply(function(){
+                		 $rootScope.isLogin = true;
+                         $rootScope.username = response.data.username;
+                	});
+                	
+                	if (window.localStorage) {
+                         console.log("localStorage ", "login");
+                         localStorage.setItem("isLogin", "login");
+                         localStorage.setItem("username", response.data.username);                  
+                    } else {
+                    	console.log("cookie");
+                    	Cookie.write("isLogin", "login");
+                    	Cookie.write("username", response.data.username);
+                    }
                     console.log("loading head img ...");
                     if (image_file != undefined) {
                         var fd = new FormData(); //初始化一个FormData实例
@@ -83,8 +102,22 @@ angular.module('profileModule',[])
                             contentType: false,
                             processData: false,
                             success: function (response) {
+                            	console.log(response);
                                 if (response.errcode == 0) {
                                     layer.msg('保存成功');
+                                    $rootScope.$apply(function(){
+                                    	$rootScope.head = server + response.data;
+                                    });
+                                    
+                                    if (window.localStorage) {
+                                        console.log("localStorage ", "login");
+                                        localStorage.setItem("isLogin", "login");
+                                        localStorage.setItem("head", $rootScope.head);
+                                    } else {
+                                        console.log("cookie");
+                                        Cookie.write("isLogin", "login");
+                                        Cookie.write("head", $rootScope.head);
+                                    }
                                 } else {
                                     layer.msg('基本信息保存成功！网络迟缓，请稍后重新设置头像~');
                                 }
@@ -100,9 +133,6 @@ angular.module('profileModule',[])
 
         });
     }
-
-
-
 
 }]);
 

@@ -1,0 +1,16 @@
+<div class="container font-yahei profile-panel-lg" style="min-width: 970px">
+    <div ng-repeat="item in history">
+        <div class="history-item-{{item.use}} col-xs-8 col-sm-8 col-md-8 col-md-offset-1">
+            <img class="history-item-img" ng-src="{{item.img}}">
+            <div class="col-xs-8 col-sm-8 col-md-8" style="margin-top: 35px">
+                <div class="history-item-name">{{item.name}}</div>
+                <div class="history-item-time">订单时间：{{item.time}}</div>
+                <div class="history-item-time">人数：{{item.group}}人<span ng-show="item.use==0">&nbsp&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp&nbsp等候：{{item.wait}}桌</span>
+                </div>
+            </div>
+
+            <div class="history-item-num">{{item.num}}</div>
+        </div>
+        <div class="history-use-{{item.use}} col-xs-2 col-sm-2 col-md-2">{{useSelection[item.use]}}</div>
+    </div>
+</div>
